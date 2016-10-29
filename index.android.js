@@ -6,15 +6,25 @@ import {
   TextInput,
   View,
   Image,
-  ScrollView
+  ScrollView,
+  AsyncStorage
 } from 'react-native';
 
-var notes = [];
+const STORAGE_KEY = "Notes:key";
 
 export default class NativeApp extends Component {
   constructor(props) {
     super(props);
-    this.state = { noteText: "" };
+    this.noteText = "";
+    this.loadInitialState();
+  }
+
+  loadInitialState = async () => {
+    this.state = { notes: [] };
+    var savedNotes = await AsyncStorage.getItem(STORAGE_KEY);
+    if (savedNotes != null) {
+      this.setState({ notes: JSON.parse(savedNotes) });
+    }
   }
 
   render() {
@@ -22,13 +32,13 @@ export default class NativeApp extends Component {
       <View style={styles.container}>
         <TextInput
           style={{height: 40}}
-          onChangeText={(text) => this.setState({ noteText: text })}
+          onChangeText={(text) => this.noteText = text}
           onSubmitEditing={() => this.addNote()}
-          value={this.state.noteText}
+          //value={this.noteText}
         />
         <ScrollView>
         {
-          notes.map(function(note, index) {
+          this.state.notes.map(function(note, index) {
             return <Text key={index}>{note}</Text>
           })
         }
@@ -38,8 +48,11 @@ export default class NativeApp extends Component {
   }
 
   addNote() {
-    notes.push(this.state.noteText);
-    this.setState({ noteText: "" });
+    var newNotes = this.state.notes;
+    newNotes.push(this.noteText);
+    this.noteText = "";
+    this.setState({ notes: newNotes });
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.notes));
   }
 }
 
