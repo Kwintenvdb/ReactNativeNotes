@@ -16,6 +16,7 @@ export default class ExpandingTextInput extends React.Component {
 				{...this.props}
 				multiline={true}
 				onContentSizeChange={(event) => {
+					console.log(event.nativeEvent.contentSize.height);
 					this.setState({ height: event.nativeEvent.contentSize.height });
 				} }
 				onChangeText={(text) => {

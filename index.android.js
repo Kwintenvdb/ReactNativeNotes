@@ -5,12 +5,14 @@ import {
   Text,
   TextInput,
   View,
-  Image,
   ScrollView,
-  AsyncStorage
+  AsyncStorage,
+  Navigator
 } from 'react-native';
 
 import ExpandingTextInput from './expandingTextInput.js';
+import Scene from './scene.js';
+import Home from './home.js';
 
 const STORAGE_KEY = "Notes:key";
 
@@ -32,20 +34,23 @@ export default class NativeApp extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <ExpandingTextInput
-          //style={{ height: 40 }}
-          //onChangeText={(text) => this.noteText = text}
-          //onSubmitEditing={() => this.addNote()}
-          //multiline={true}
-          //value={this.noteText}
-          />
-        <ScrollView>
-          {
-            this.state.notes.map((note, index) => {
-              return <Text key={index}>{note}</Text>
-            })
+        <Navigator
+          initialRoute={{ component: Home }}
+          renderScene={(route, navigator) => 
+            <route.component navigator={navigator} {...route.passProps} />
           }
-        </ScrollView>
+        />
+
+        <View style={styles.container}>
+          <ExpandingTextInput />
+          <ScrollView>
+            {
+              this.state.notes.map((note, index) => {
+                return <Text key={index}>{note}</Text>
+              })
+            }
+          </ScrollView>
+        </View>
       </View>
     );
   }
