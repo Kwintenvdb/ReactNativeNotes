@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
 	View,
 	Text
@@ -11,7 +11,7 @@ export default class Home extends React.Component {
 		return (
 			<View>
 				<Text>Home</Text>
-				<NotesList />
+				<NotesList navigator={this.props.navigator} />
 			</View>
 		);
 	}

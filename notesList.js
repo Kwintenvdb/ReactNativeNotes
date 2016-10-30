@@ -1,10 +1,13 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
 	AsyncStorage,
 	ScrollView,
 	Text,
+	TouchableHighlight,
 	View
 } from 'react-native';
+
+import NoteEditor from './noteEditor.js';
 
 const STORAGE_KEY = "Notes:key";
 
@@ -25,13 +28,27 @@ export default class NotesList extends React.Component {
 	render() {
 		return (
 			<ScrollView>
-        {
-          this.state.notes.map((note, index) => {
-            return <Text key={index}>{note}</Text>
-          })
-        }
+        {this.renderList()}
       </ScrollView>
 		);
+	}
+
+	renderList() {
+		return this.state.notes.map((note, index) => {
+			return (
+				<TouchableHighlight key={index} onPress={() => this.onNotePressed(index)}>
+					<Text>{note}</Text>
+				</TouchableHighlight>
+			)
+		})
+	}
+
+	onNotePressed(index) {
+		console.log("Note " + index + " pressed");
+		this.props.navigator.push({
+			component: NoteEditor,
+			passProps: { note: this.state.notes[index] }
+		});
 	}
 
 	addNote() {
