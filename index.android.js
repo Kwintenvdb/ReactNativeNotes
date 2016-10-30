@@ -10,6 +10,8 @@ import {
   AsyncStorage
 } from 'react-native';
 
+import ExpandingTextInput from './expandingTextInput.js';
+
 const STORAGE_KEY = "Notes:key";
 
 export default class NativeApp extends Component {
@@ -30,18 +32,19 @@ export default class NativeApp extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <TextInput
-          style={{height: 40}}
-          onChangeText={(text) => this.noteText = text}
-          onSubmitEditing={() => this.addNote()}
+        <ExpandingTextInput
+          //style={{ height: 40 }}
+          //onChangeText={(text) => this.noteText = text}
+          //onSubmitEditing={() => this.addNote()}
+          //multiline={true}
           //value={this.noteText}
-        />
+          />
         <ScrollView>
-        {
-          this.state.notes.map(function(note, index) {
-            return <Text key={index}>{note}</Text>
-          })
-        }
+          {
+            this.state.notes.map((note, index) => {
+              return <Text key={index}>{note}</Text>
+            })
+          }
         </ScrollView>
       </View>
     );
