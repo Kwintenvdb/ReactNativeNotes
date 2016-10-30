@@ -1,18 +1,44 @@
 import React, { Component, PropTypes } from 'react';
-import { View, Text, TouchableHighlight } from 'react-native';
+import {
+	AsyncStorage,
+	ScrollView,
+	Text,
+	View
+} from 'react-native';
+
+const STORAGE_KEY = "Notes:key";
 
 export default class NotesList extends React.Component {
-	static propTypes = {
-		//title: PropTypes.string.isRequired,
-		//onForward: PropTypes.func.isRequired,
-		//onBack: PropTypes.func.isRequired,
-	}
+	constructor(props) {
+    super(props);
+    this.loadInitialState();
+  }
+
+	loadInitialState = async () => {
+    this.state = { notes: [] };
+    var savedNotes = await AsyncStorage.getItem(STORAGE_KEY);
+    if (savedNotes != null) {
+      this.setState({ notes: JSON.parse(savedNotes) });
+    }
+  }
 
 	render() {
 		return (
-			<View>
-				<Text>Notes list...</Text>
-			</View>
+			<ScrollView>
+        {
+          this.state.notes.map((note, index) => {
+            return <Text key={index}>{note}</Text>
+          })
+        }
+      </ScrollView>
 		);
 	}
+
+	addNote() {
+    var newNotes = this.state.notes;
+    newNotes.push(this.noteText); // move adding to a new "scene"
+    this.noteText = "";
+    this.setState({ notes: newNotes });
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.notes));
+  }
 }
