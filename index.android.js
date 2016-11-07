@@ -6,9 +6,14 @@ import {
   Navigator
 } from 'react-native';
 
+import NoteData from './noteData.js';
 import Home from './home.js';
 
 export default class NativeApp extends Component {
+  componentWillMount() {
+    NoteData.loadNotes().then(() => this.setState({}));
+  }
+
   render() {
     return (
       <View style={styles.container}>

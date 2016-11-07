@@ -8,21 +8,13 @@ import {
 } from 'react-native';
 
 import NoteEditor from './noteEditor.js';
+import NoteData from './noteData.js';
 
 const STORAGE_KEY = "Notes:key";
 
 export default class NotesList extends React.Component {
 	constructor(props) {
     super(props);
-    this.loadInitialState();
-  }
-
-	loadInitialState = async () => {
-    this.state = { notes: [] };
-    var savedNotes = await AsyncStorage.getItem(STORAGE_KEY);
-    if (savedNotes != null) {
-      this.setState({ notes: JSON.parse(savedNotes) });
-    }
   }
 
 	render() {
@@ -34,7 +26,7 @@ export default class NotesList extends React.Component {
 	}
 
 	renderList() {
-		return this.state.notes.map((note, index) => {
+		return NoteData.getNotes().map((note, index) => {
 			return (
 				<TouchableHighlight key={index} onPress={() => this.onNotePressed(index)}>
 					<Text>{note}</Text>
@@ -47,7 +39,7 @@ export default class NotesList extends React.Component {
 		console.log("Note " + index + " pressed");
 		this.props.navigator.push({
 			component: NoteEditor,
-			passProps: { note: this.state.notes[index] }
+			passProps: { note: NoteData.getNotes()[index] }
 		});
 	}
 

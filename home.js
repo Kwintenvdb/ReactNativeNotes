@@ -6,6 +6,8 @@ import {
 } from 'react-native';
 
 import NotesList from './notesList.js';
+import NoteEditor from './noteEditor.js';
+import NoteData from './noteData.js';
 
 export default class Home extends React.Component {
 	render() {
@@ -21,6 +23,11 @@ export default class Home extends React.Component {
 	}
 
 	createNewNote() {
-		
+		var note = "Testyboo";
+		NoteData.addNote(note);
+		this.props.navigator.push({
+			component: NoteEditor,
+			passProps: { note: note }
+		});
 	}
 }

@@ -5,6 +5,8 @@ import {
 	TouchableHighlight
 } from 'react-native';
 
+import NoteData from './noteData.js';
+
 export default class NoteEditor extends React.Component {
 	render() {
 		return (
@@ -15,6 +17,9 @@ export default class NoteEditor extends React.Component {
 				</TouchableHighlight>
 				<TouchableHighlight onPress={() => this.save()}>
 					<Text>SAVE</Text>
+				</TouchableHighlight>
+				<TouchableHighlight onPress={() => this.deleteNote()}>
+					<Text>DELETE</Text>
 				</TouchableHighlight>
 				<Text>{this.props.note}</Text>
 			</View>
@@ -27,5 +32,9 @@ export default class NoteEditor extends React.Component {
 
 	save() {
 
+	}
+
+	deleteNote() {
+		NoteData.removeNote(this.props.note);
 	}
 }
