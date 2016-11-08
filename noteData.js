@@ -3,11 +3,26 @@ import { AsyncStorage } from 'react-native';
 const STORAGE_KEY = "Notes:key";
 var notes = [];
 
+export class Note {
+	constructor(noteText) {
+		this.noteText = noteText;
+	}
+
+	toJSON() {
+		return {
+			noteText: this.noteText
+		};
+	}
+}
+
 export default class NoteData {
 	static loadNotes() {
 		var promise = AsyncStorage.getItem(STORAGE_KEY);
 		promise.then((result) => {
-			notes = JSON.parse(result);
+			var loadedNotes = JSON.parse(result);
+			notes = loadedNotes !== null ? loadedNotes : notes;
+			console.log("Logging notes");
+			console.log(notes);
 		});
 		return promise;
 	}
@@ -17,13 +32,13 @@ export default class NoteData {
 	}
 
 	static addNote(note) {
+		console.log(notes);
 		notes.push(note);
 		NoteData.saveNotes();
 	}
 
 	static removeNote(note) {
 		var index = notes.indexOf(note);
-		//console.log(index);
 		notes.splice(index, 1);
 		NoteData.saveNotes();
 	}

@@ -7,12 +7,14 @@ import {
 } from 'react-native';
 
 import NoteData from './noteData.js';
+import Note from './noteData.js';
 
 export default class NoteEditor extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
-      text: this.props.note,
+			note: this.props.note,
+      text: this.props.note.noteText,
 			height: 0
     };
   }
@@ -31,18 +33,18 @@ export default class NoteEditor extends React.Component {
 					<Text>DELETE</Text>
 				</TouchableHighlight>
 
-				<View style={{flex: 1, backgroundColor: 'powderblue'}}>
-				<TextInput
-					multiline={true}
-					value={this.state.text}
-					onChangeText={(text) => this.setState({text: text})}
-					onContentSizeChange={(event) => {
-						this.setState({ height: event.nativeEvent.contentSize.height });
-					} }
-					enablesReturnKeyAutomatically={true}
-					style={{height: this.state.height}}
-					autoCorrect={false}
-				/>
+				<View style={{ flex: 1, backgroundColor: 'powderblue' }}>
+					<TextInput
+						multiline={true}
+						value={this.state.text}
+						onChangeText={(text) => this.setState({ text: text })}
+						onContentSizeChange={(event) => {
+							this.setState({ height: event.nativeEvent.contentSize.height });
+						} }
+						enablesReturnKeyAutomatically={true}
+						style={{ height: this.state.height }}
+						autoCorrect={false}
+						/>
 				</View>
 			</View>
 		);
@@ -53,7 +55,8 @@ export default class NoteEditor extends React.Component {
 	}
 
 	save() {
-
+		this.state.note.noteText = this.state.text;
+		NoteData.saveNotes();
 	}
 
 	deleteNote() {

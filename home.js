@@ -8,6 +8,7 @@ import {
 import NotesList from './notesList.js';
 import NoteEditor from './noteEditor.js';
 import NoteData from './noteData.js';
+import Note from './noteData.js';
 
 export default class Home extends React.Component {
 	render() {
@@ -23,7 +24,7 @@ export default class Home extends React.Component {
 	}
 
 	createNewNote() {
-		var note = "Testyboo";
+		var note = new Note("Testyboo");
 		NoteData.addNote(note);
 		this.props.navigator.push({
 			component: NoteEditor,

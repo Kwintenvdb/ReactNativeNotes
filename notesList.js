@@ -29,7 +29,7 @@ export default class NotesList extends React.Component {
 		return NoteData.getNotes().map((note, index) => {
 			return (
 				<TouchableHighlight key={index} onPress={() => this.onNotePressed(index)}>
-					<Text>{note}</Text>
+					<Text>{note.noteText}</Text>
 				</TouchableHighlight>
 			)
 		})
