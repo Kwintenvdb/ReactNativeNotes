@@ -2,15 +2,24 @@ import React, { Component } from 'react';
 import {
 	View,
 	Text,
+	TextInput,
 	TouchableHighlight
 } from 'react-native';
 
 import NoteData from './noteData.js';
 
 export default class NoteEditor extends React.Component {
+	constructor(props) {
+    super(props);
+    this.state = {
+      text: this.props.note,
+			height: 0
+    };
+  }
+
 	render() {
 		return (
-			<View>
+			<View style={{flex: 1}}>
 				<Text>Note Editor</Text>
 				<TouchableHighlight onPress={() => this.goBack()}>
 					<Text>BACK</Text>
@@ -21,7 +30,20 @@ export default class NoteEditor extends React.Component {
 				<TouchableHighlight onPress={() => this.deleteNote()}>
 					<Text>DELETE</Text>
 				</TouchableHighlight>
-				<Text>{this.props.note}</Text>
+
+				<View style={{flex: 1, backgroundColor: 'powderblue'}}>
+				<TextInput
+					multiline={true}
+					value={this.state.text}
+					onChangeText={(text) => this.setState({text: text})}
+					onContentSizeChange={(event) => {
+						this.setState({ height: event.nativeEvent.contentSize.height });
+					} }
+					enablesReturnKeyAutomatically={true}
+					style={{height: this.state.height}}
+					autoCorrect={false}
+				/>
+				</View>
 			</View>
 		);
 	}
