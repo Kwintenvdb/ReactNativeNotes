@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
 	AsyncStorage,
 	ScrollView,
+	StyleSheet,
 	Text,
 	TouchableHighlight,
 	View
@@ -28,8 +29,9 @@ export default class NotesList extends React.Component {
 	renderList() {
 		return NoteData.getNotes().map((note, index) => {
 			return (
-				<TouchableHighlight key={index} onPress={() => this.onNotePressed(index)}>
-					<Text>{note.noteText}</Text>
+				<TouchableHighlight key={index} onPress={() => this.onNotePressed(index)}
+				style={styles.note} underlayColor={"#EEE"}>
+					<Text style={{fontSize: 15}}>{note.noteText}</Text>
 				</TouchableHighlight>
 			)
 		})
@@ -51,3 +53,11 @@ export default class NotesList extends React.Component {
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.notes));
   }
 }
+
+const styles = StyleSheet.create({
+	note: {
+		padding: 5,
+		marginBottom: 5,
+		marginTop: 5,
+	}
+});

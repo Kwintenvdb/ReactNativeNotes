@@ -13,7 +13,6 @@ export default class Home extends React.Component {
 	render() {
 		return (
 			<View>
-				<Text>Home</Text>
 				<NotesList navigator={this.props.navigator} />
 				<TouchableHighlight onPress={() => this.createNewNote()}>
 					<Text>Create new</Text>

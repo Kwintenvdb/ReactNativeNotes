@@ -22,7 +22,6 @@ export default class NoteEditor extends React.Component {
 	render() {
 		return (
 			<View style={{flex: 1}}>
-				<Text>Note Editor</Text>
 				<TouchableHighlight onPress={() => this.goBack()}>
 					<Text>BACK</Text>
 				</TouchableHighlight>
