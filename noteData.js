@@ -20,9 +20,7 @@ export default class NoteData {
 		var promise = AsyncStorage.getItem(STORAGE_KEY);
 		promise.then((result) => {
 			var loadedNotes = JSON.parse(result);
-			notes = loadedNotes !== null ? loadedNotes : notes;
-			console.log("Logging notes");
-			console.log(notes);
+			notes = loadedNotes == null ? notes : loadedNotes;
 		});
 		return promise;
 	}
@@ -32,7 +30,6 @@ export default class NoteData {
 	}
 
 	static addNote(note) {
-		console.log(notes);
 		notes.push(note);
 		NoteData.saveNotes();
 	}

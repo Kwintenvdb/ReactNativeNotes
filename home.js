@@ -5,10 +5,9 @@ import {
 	TouchableHighlight
 } from 'react-native';
 
+import NoteData, { Note } from './noteData.js';
 import NotesList from './notesList.js';
 import NoteEditor from './noteEditor.js';
-import NoteData from './noteData.js';
-import Note from './noteData.js';
 
 export default class Home extends React.Component {
 	render() {
