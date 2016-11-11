@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
 	Button,
 	View,
+	StyleSheet,
 	Text,
 	TouchableHighlight
 } from 'react-native';
@@ -13,12 +14,14 @@ import NoteEditor from './noteEditor.js';
 export default class Home extends React.Component {
 	render() {
 		return (
-			<View title="hello">
+			<View style={{flex: 1}}>
 				<NotesList navigator={this.props.navigator} />
-				<Button
-					title="Create new"
-					onPress={() => this.createNewNote()}
-				/>
+				<View style={styles.buttonContainer}>
+					<Button
+						title="Create new"
+						onPress={() => this.createNewNote()}
+					/>
+				</View>
 			</View>
 		);
 	}
@@ -32,3 +35,11 @@ export default class Home extends React.Component {
 		});
 	}
 }
+
+const styles = StyleSheet.create({
+	buttonContainer: {
+		right: 15,
+		bottom: 15,
+		position: "absolute",
+	},
+});

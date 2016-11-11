@@ -22,9 +22,6 @@ export default class NoteEditor extends React.Component {
 	render() {
 		return (
 			<View style={{flex: 1}}>
-				<TouchableHighlight onPress={() => this.goBack()}>
-					<Text>BACK</Text>
-				</TouchableHighlight>
 				<TouchableHighlight onPress={() => this.save()}>
 					<Text>SAVE</Text>
 				</TouchableHighlight>
@@ -47,10 +44,6 @@ export default class NoteEditor extends React.Component {
 				</View>
 			</View>
 		);
-	}
-
-	goBack() {
-		this.props.navigator.pop();
 	}
 
 	save() {
