@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+	Button,
 	View,
 	Text,
 	TouchableHighlight
@@ -12,11 +13,12 @@ import NoteEditor from './noteEditor.js';
 export default class Home extends React.Component {
 	render() {
 		return (
-			<View>
+			<View title="hello">
 				<NotesList navigator={this.props.navigator} />
-				<TouchableHighlight onPress={() => this.createNewNote()}>
-					<Text>Create new</Text>
-				</TouchableHighlight>
+				<Button
+					title="Create new"
+					onPress={() => this.createNewNote()}
+				/>
 			</View>
 		);
 	}

@@ -81,6 +81,7 @@ export default class NativeApp extends Component {
               )
             }
           }
+          configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
         />
       </View>
     );
@@ -90,8 +91,7 @@ export default class NativeApp extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
-    paddingTop: 50,
+    paddingTop: 40,
   },
 
   navBar: {
@@ -105,17 +105,17 @@ const styles = StyleSheet.create({
     backgroundColor: "gainsboro",
     height: 40,
     borderBottomWidth: 1,
-    borderColor: "#999",
+    borderColor: "#AAA",
     padding: 10,
   },
 
   title: {
-      fontSize: 18,
-      justifyContent: "center",
-      backgroundColor: "red",
-      flex: 1,
-      alignItems: "center",
-   },
+    fontSize: 18,
+    justifyContent: "center",
+    backgroundColor: "red",
+    flex: 1,
+    alignItems: "center",
+  },
 });
 
 AppRegistry.registerComponent('NativeApp', () => NativeApp);

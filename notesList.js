@@ -20,7 +20,7 @@ export default class NotesList extends React.Component {
 
 	render() {
 		return (
-			<ScrollView>
+			<ScrollView style={styles.notesList}>
         {this.renderList()}
       </ScrollView>
 		);
@@ -55,9 +55,13 @@ export default class NotesList extends React.Component {
 }
 
 const styles = StyleSheet.create({
-	note: {
-		padding: 5,
+	notesList: {
 		marginBottom: 10,
-		marginTop: 0,
+	},
+
+	note: {
+		padding: 10,
+    borderBottomWidth: 1,
+		borderColor: "#AAA",
 	}
 });
