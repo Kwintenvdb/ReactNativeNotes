@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   AppRegistry,
+  BackAndroid,
   StyleSheet,
   View,
   Navigator,
@@ -47,6 +48,13 @@ class NavBar extends Component {
   }
 }
 
+var navigator;
+
+BackAndroid.addEventListener("hardwareBackPress", () => {
+  navigator.pop();
+  return true;
+});
+
 export default class NativeApp extends Component {
   componentWillMount() {
     NoteData.loadNotes().then(() => this.setState({}));
@@ -56,6 +64,7 @@ export default class NativeApp extends Component {
     return (
       <View style={{flex: 1}}>
         <Navigator
+          ref={(nav) => navigator = nav}
           initialRoute={{ component: Home }}
           navigationBar={
             <NavBar ref={(navBar) => this.navBar = navBar} />
@@ -82,7 +91,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    top: 40,
+    paddingTop: 50,
   },
 
   navBar: {

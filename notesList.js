@@ -57,7 +57,7 @@ export default class NotesList extends React.Component {
 const styles = StyleSheet.create({
 	note: {
 		padding: 5,
-		marginBottom: 5,
-		marginTop: 5,
+		marginBottom: 10,
+		marginTop: 0,
 	}
 });
