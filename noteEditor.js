@@ -32,7 +32,7 @@ export default class NoteEditor extends React.Component {
 					<Text>DELETE</Text>
 				</TouchableHighlight>
 
-				<View style={{ flex: 1, backgroundColor: 'powderblue' }}>
+				<View style={{ flex: 1, backgroundColor: "powderblue" }}>
 					<TextInput
 						multiline={true}
 						value={this.state.text}
@@ -43,7 +43,7 @@ export default class NoteEditor extends React.Component {
 						enablesReturnKeyAutomatically={true}
 						style={{ height: this.state.height }}
 						autoCorrect={false}
-						/>
+					/>
 				</View>
 			</View>
 		);
