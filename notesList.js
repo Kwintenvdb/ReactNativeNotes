@@ -29,9 +29,12 @@ export default class NotesList extends React.Component {
 	renderList() {
 		return NoteData.getNotes().map((note, index) => {
 			return (
-				<TouchableHighlight key={index} onPress={() => this.onNotePressed(index)}
-				style={styles.note} underlayColor={"#EEE"}>
-					<Text style={{fontSize: 15}}>{note.noteText}</Text>
+				<TouchableHighlight
+					key={index}
+					onPress={() => this.onNotePressed(index)}
+					style={styles.note}
+					underlayColor={"#EEE"}>
+					<Text style={styles.noteText}>{note.noteText}</Text>
 				</TouchableHighlight>
 			)
 		})
@@ -54,5 +57,10 @@ const styles = StyleSheet.create({
 		padding: 10,
     borderBottomWidth: 1,
 		borderColor: "#AAA",
-	}
+	},
+
+	noteText: {
+		fontSize: 15,
+		color: "#444",
+	},
 });

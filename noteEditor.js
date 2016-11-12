@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
 	View,
 	Text,
+	StyleSheet,
 	TextInput,
 	TouchableHighlight
 } from 'react-native';
@@ -29,7 +30,7 @@ export default class NoteEditor extends React.Component {
 					<Text>DELETE</Text>
 				</TouchableHighlight>
 
-				<View style={{ flex: 1, backgroundColor: "powderblue" }}>
+				<View style={{ flex: 1 }}>
 					<TextInput
 						multiline={true}
 						value={this.state.text}
@@ -38,7 +39,7 @@ export default class NoteEditor extends React.Component {
 							this.setState({ height: event.nativeEvent.contentSize.height });
 						} }
 						enablesReturnKeyAutomatically={true}
-						style={{ height: this.state.height }}
+						style={[styles.textInput, { height: this.state.height }]}
 					/>
 				</View>
 			</View>
@@ -52,5 +53,13 @@ export default class NoteEditor extends React.Component {
 
 	deleteNote() {
 		NoteData.removeNote(this.props.note);
+		this.props.navigator.pop();
 	}
 }
+
+const styles = StyleSheet.create({
+	textInput: {
+		fontSize: 15,
+		color: "#444",
+	},
+});
