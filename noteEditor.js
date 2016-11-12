@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {
+	Button,
 	View,
 	Text,
 	StyleSheet,
@@ -23,14 +24,7 @@ export default class NoteEditor extends React.Component {
 	render() {
 		return (
 			<View style={{flex: 1}}>
-				<TouchableHighlight onPress={() => this.save()}>
-					<Text>SAVE</Text>
-				</TouchableHighlight>
-				<TouchableHighlight onPress={() => this.deleteNote()}>
-					<Text>DELETE</Text>
-				</TouchableHighlight>
-
-				<View style={{ flex: 1 }}>
+				<View style={styles.noteEditor}>
 					<TextInput
 						multiline={true}
 						value={this.state.text}
@@ -40,6 +34,28 @@ export default class NoteEditor extends React.Component {
 						} }
 						enablesReturnKeyAutomatically={true}
 						style={[styles.textInput, { height: this.state.height }]}
+					/>
+				</View>
+				{this.renderButtons()}
+			</View>
+		);
+	}
+
+	renderButtons() {
+		return (
+			<View style={styles.buttonContainer}>
+				<View style={styles.button}>
+					<Button
+						onPress={() => this.deleteNote()}
+						title="Delete"
+						color="red"
+					/>
+				</View>
+				<View style={{width: 15}} />
+				<View style={styles.button}>
+					<Button
+						onPress={() => this.save()}
+						title="Save"
 					/>
 				</View>
 			</View>
@@ -58,8 +74,22 @@ export default class NoteEditor extends React.Component {
 }
 
 const styles = StyleSheet.create({
+	noteEditor: {
+		flex: 1,
+		padding: 10,
+	},
+
 	textInput: {
 		fontSize: 15,
 		color: "#444",
 	},
+
+	buttonContainer: {
+		flexDirection: "row",
+		padding: 15,
+	},
+
+	button: {
+		flex: 1,
+	}
 });
