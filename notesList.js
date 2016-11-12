@@ -44,14 +44,6 @@ export default class NotesList extends React.Component {
 			passProps: { note: NoteData.getNotes()[index] }
 		});
 	}
-
-	addNote() {
-    var newNotes = this.state.notes;
-    newNotes.push(this.noteText); // move adding to a new "scene"
-    this.noteText = "";
-    this.setState({ notes: newNotes });
-    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.notes));
-  }
 }
 
 const styles = StyleSheet.create({

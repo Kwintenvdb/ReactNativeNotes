@@ -39,7 +39,6 @@ export default class NoteEditor extends React.Component {
 						} }
 						enablesReturnKeyAutomatically={true}
 						style={{ height: this.state.height }}
-						autoCorrect={false}
 					/>
 				</View>
 			</View>
