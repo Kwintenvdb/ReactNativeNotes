@@ -31,8 +31,9 @@ export default class NoteEditor extends React.Component {
 						onChangeText={(text) => this.setState({ text: text })}
 						onContentSizeChange={(event) => {
 							this.setState({ height: event.nativeEvent.contentSize.height });
-						} }
+						}}
 						enablesReturnKeyAutomatically={true}
+						placeholder="Write a note..."
 						style={[styles.textInput, { height: this.state.height }]}
 					/>
 				</View>

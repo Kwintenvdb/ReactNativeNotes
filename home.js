@@ -27,7 +27,7 @@ export default class Home extends React.Component {
 	}
 
 	createNewNote() {
-		var note = new Note("Testyboo");
+		var note = new Note("");
 		NoteData.addNote(note);
 		this.props.navigator.push({
 			component: NoteEditor,

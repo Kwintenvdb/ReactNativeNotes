@@ -56,7 +56,7 @@ export default class NativeApp extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40,
+    paddingTop: 45,
   },
 });
 

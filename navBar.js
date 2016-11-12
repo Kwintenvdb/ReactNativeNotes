@@ -19,12 +19,12 @@ export default class NavBar extends Component {
       <View style={styles.navBar}>
         {this.route && this.route.component != Home &&
         <TouchableHighlight onPress={() => this.goBack()}>
-          <Text>Back</Text>
+          <Text style={styles.navBarText}>Back</Text>
         </TouchableHighlight>
         }
         {this.route &&
         <TouchableHighlight>
-          <Text>{this.getTitle(this.route.component)}</Text>
+          <Text style={styles.navBarText}>{this.getTitle(this.route.component)}</Text>
         </TouchableHighlight>
         }
       </View>
@@ -54,9 +54,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "gainsboro",
-    height: 40,
+    height: 45,
     borderBottomWidth: 1,
     borderColor: "#AAA",
     padding: 10,
   },
+
+	navBarText: {
+		fontSize: 15,
+		color: "#444",
+	}
 });
