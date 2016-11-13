@@ -5,6 +5,7 @@ import {
   StyleSheet,
   View,
   Navigator,
+  StatusBar,
   Text,
   TouchableHighlight
 } from 'react-native';
@@ -28,6 +29,7 @@ export default class NativeApp extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
+        <StatusBar backgroundColor="#137FD6" />
         <Navigator
           ref={(nav) => navigator = nav}
           initialRoute={{ component: Home }}
