@@ -3,6 +3,7 @@ import {
 	Button,
 	View,
 	Text,
+	ScrollView,
 	StyleSheet,
 	TextInput,
 	TouchableHighlight
@@ -24,7 +25,7 @@ export default class NoteEditor extends React.Component {
 	render() {
 		return (
 			<View style={{flex: 1}}>
-				<View style={styles.noteEditor}>
+				<ScrollView style={styles.noteEditor}>
 					<TextInput
 						multiline={true}
 						value={this.state.text}
@@ -36,7 +37,7 @@ export default class NoteEditor extends React.Component {
 						placeholder="Write a note..."
 						style={[styles.textInput, { height: this.state.height }]}
 					/>
-				</View>
+				</ScrollView>
 				{this.renderButtons()}
 			</View>
 		);
@@ -82,7 +83,10 @@ export default class NoteEditor extends React.Component {
 const styles = StyleSheet.create({
 	noteEditor: {
 		flex: 1,
-		padding: 10,
+		marginTop: 10,
+		paddingRight: 10,
+		paddingLeft: 10,
+		paddingBottom: 10,
 	},
 
 	textInput: {
