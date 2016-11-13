@@ -13,9 +13,16 @@ import NoteEditor from './noteEditor.js';
 
 export default class Home extends React.Component {
 	render() {
+		const anyNotes = NoteData.getNotes().length > 0;
+
 		return (
 			<View style={{flex: 1}}>
-				<NotesList navigator={this.props.navigator} />
+			{
+				anyNotes && <NotesList navigator={this.props.navigator} />
+			}
+			{
+				!anyNotes && <Text style={styles.noNotesText}>Create a new note...</Text>
+			}
 				<View style={styles.buttonContainer}>
 					<Button
 						title="Create new"
@@ -42,4 +49,10 @@ const styles = StyleSheet.create({
 		bottom: 15,
 		position: "absolute",
 	},
+
+	noNotesText: {
+		padding: 10,
+		fontSize: 15,
+		fontStyle: "italic",
+	}
 });

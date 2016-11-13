@@ -14,10 +14,6 @@ import NoteData from './noteData.js';
 const STORAGE_KEY = "Notes:key";
 
 export default class NotesList extends React.Component {
-	constructor(props) {
-    super(props);
-  }
-
 	render() {
 		return (
 			<ScrollView style={styles.notesList}>
@@ -41,7 +37,6 @@ export default class NotesList extends React.Component {
 	}
 
 	onNotePressed(index) {
-		console.log("Note " + index + " pressed");
 		this.props.navigator.push({
 			component: NoteEditor,
 			passProps: { note: NoteData.getNotes()[index] }
