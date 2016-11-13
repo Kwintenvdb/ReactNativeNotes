@@ -19,7 +19,7 @@ export default class NavBar extends Component {
       <View style={styles.navBar}>
         {this.route && this.route.component != Home &&
         <TouchableHighlight onPress={() => this.goBack()}>
-          <Text style={styles.navBarText}>Back</Text>
+          <Text style={styles.navBarText}>BACK</Text>
         </TouchableHighlight>
         }
         {this.route &&
@@ -40,12 +40,13 @@ export default class NavBar extends Component {
   }
 
   getTitle(component) {
-    return component == Home ? "Notes" : "Edit note";
+    return component == Home ? "NOTES" : "EDIT NOTE";
   }
 }
 
 const styles = StyleSheet.create({
   navBar: {
+    backgroundColor: "#2196F3",
     position: "absolute",
     top: 0,
     left: 0,
@@ -53,16 +54,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "gainsboro",
     height: 45,
-    borderBottomWidth: 1,
-    borderColor: "#AAA",
+    // borderBottomWidth: 1,
+    borderColor: "#0D83E3",
     padding: 10,
+    elevation: 1
   },
 
 	navBarText: {
-		fontSize: 15,
-		color: "#444",
+		color: "white",
+    fontWeight: "500",
 	},
 
   navBarTitle: {
