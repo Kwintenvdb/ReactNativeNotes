@@ -28,7 +28,7 @@ export default class NoteEditor extends React.Component {
 					<TextInput
 						multiline={true}
 						value={this.state.text}
-						onChangeText={(text) => this.setState({ text: text })}
+						onChangeText={(text) => this.onTextChanged(text)}
 						onContentSizeChange={(event) => {
 							this.setState({ height: event.nativeEvent.contentSize.height });
 						}}
@@ -52,19 +52,24 @@ export default class NoteEditor extends React.Component {
 						color="red"
 					/>
 				</View>
-				<View style={{width: 15}} />
+				{/*<View style={{width: 15}} />
 				<View style={styles.button}>
 					<Button
-						onPress={() => this.save()}
+						onPress={() => this.save(this.state.text)}
 						title="Save"
 					/>
-				</View>
+				</View>*/}
 			</View>
 		);
 	}
 
-	save() {
-		this.state.note.noteText = this.state.text;
+	onTextChanged(text) {
+		this.setState({text: text});
+		this.save(text);
+	}
+
+	save(text) {
+		this.state.note.noteText = text;
 		NoteData.saveNotes();
 	}
 
