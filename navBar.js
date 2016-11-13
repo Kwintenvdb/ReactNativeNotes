@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     // borderBottomWidth: 1,
     borderColor: "#0D83E3",
     padding: 10,
-    elevation: 1
+    elevation: 4
   },
 
 	navBarText: {
